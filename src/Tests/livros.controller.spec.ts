@@ -24,7 +24,7 @@ describe('AppController', () => {
       controllers: [LivrosController],
       providers: [
         {
-          provide: 'ITournamentsService',
+          provide: 'ILivrosService',
           useClass: MockLivrosService,
         },
         MockLivrosService,

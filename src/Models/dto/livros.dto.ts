@@ -3,21 +3,24 @@ import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class LivroDto {
   @IsString()
-  @ApiProperty()
+  @ApiProperty({ example: '1', description: 'Identificador do livro' })
   id: string;
 
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({
+    example: 'ISBN 978-8576082675',
+    description: 'Código ISBN do livro',
+  })
   codigo: string;
 
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({ example: 'Código Limpo', description: 'Nome do livro' })
   nome: string;
 
   @IsNumber()
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({ example: 70.99, description: 'Preço do livro' })
   preco: number;
 }

@@ -6,14 +6,17 @@ import { ApiProperty } from '@nestjs/swagger';
 @Table
 export class Livro extends Model {
   @Expose()
-  @ApiProperty()
+  @ApiProperty({ example: '1', description: 'Identificador do livro' })
   @Column({
     type: DataType.STRING,
     primaryKey: true,
   })
   id: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'ISBN 978-8576082675',
+    description: 'Código ISBN do livro',
+  })
   @Expose()
   @Column({
     type: DataType.STRING(60),
@@ -21,7 +24,7 @@ export class Livro extends Model {
   })
   codigo: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'Código Limpo', description: 'Nome do livro' })
   @Expose()
   @Column({
     type: DataType.STRING,
@@ -29,7 +32,7 @@ export class Livro extends Model {
   })
   nome: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 70.99, description: 'Preço do livro' })
   @Expose()
   @Column({
     type: DataType.DECIMAL(10, 2),
