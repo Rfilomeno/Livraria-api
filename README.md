@@ -1,4 +1,9 @@
 <p align="center">
+  <h1>Livraria-API</h1><br>
+  <h2>Powered by</h2>
+</p>
+
+<p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
 
@@ -24,7 +29,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Livraria-API é um microsserviço destinado a apresentação do trabalho Final(Assessment) das disciplinas do bloco de Engenharia de Softwares Escaláveis da Infnet.
 
 ## Installation
 
@@ -58,12 +63,27 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Swagger UI
+
+```bash
+# swagger ui
+livraria-api/docs
+
+# swagger json documentation
+livraria-api/docs-json
+```
+
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
 ## Stay in touch
 
+Livraria-API:
+- Author - [Rodrigo Filomeno](http://github.com/Rfilomeno)
+
+Nest:
 - Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
 - Website - [https://nestjs.com](https://nestjs.com/)
 - Twitter - [@nestframework](https://twitter.com/nestframework)
