@@ -1,7 +1,6 @@
-<p align="center">
-  <h1>Livraria-API</h1><br>
-  <h2>Powered by</h2>
-</p>
+
+  <h1 align="center">Livraria-API</h1><br>
+  <h3 align="center">Powered by</h3>
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
