@@ -42,14 +42,12 @@ describe('AppController', () => {
     });
 
     it('should return an Array of livros', async () => {
-      jest
-        .spyOn(livrosService, 'findAll')
-        .mockImplementation(() => resultArray);
+      jest.spyOn(livrosService, 'getAll').mockImplementation(() => resultArray);
       expect(livrosController.getAll()).toStrictEqual(resultArray);
     });
 
     it('should return a livro', async () => {
-      jest.spyOn(livrosService, 'findOne').mockImplementation(() => result);
+      jest.spyOn(livrosService, 'getById').mockImplementation(() => result);
       expect(livrosController.getById('1')).toStrictEqual(result);
     });
   });

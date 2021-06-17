@@ -22,11 +22,11 @@ export class MockLivrosService {
   create(tournament: CreateLivroDto): Promise<LivroDto> {
     return this.result;
   }
-  findAll(): Promise<LivroDto[]> {
+  getAll(): Promise<LivroDto[]> {
     return this.resultArray;
   }
 
-  findOne(id: string): Promise<LivroDto> {
+  getById(id: string): Promise<LivroDto> {
     return this.result;
   }
   update(id: string, livro: UpdateLivroDto): Promise<[number, LivroDto[]]> {
