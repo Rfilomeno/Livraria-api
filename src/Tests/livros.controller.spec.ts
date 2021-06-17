@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { LivroDto } from '../Models/dto/livros.dto';
 import { LivrosController } from '../controllers/livros.controller';
 import { MockLivrosService } from './mock.livros.service';
+import { Livro } from 'src/Models/livro.model';
 
 describe('AppController', () => {
   let livrosController: LivrosController;
@@ -49,6 +50,27 @@ describe('AppController', () => {
     it('should return a livro', async () => {
       jest.spyOn(livrosService, 'getById').mockImplementation(() => result);
       expect(livrosController.getById('1')).toStrictEqual(result);
+    });
+
+    it('should update a livro', async () => {
+      const resultUpdate = new Promise<[number, LivroDto[]]>(
+        (resolve, reject) => {
+          resolve([1, [livro]]);
+        },
+      );
+      jest
+        .spyOn(livrosService, 'update')
+        .mockImplementation(() => resultUpdate);
+      expect(livrosController.update(livro as Livro)).toStrictEqual(
+        resultUpdate,
+      );
+    });
+    it('should delete a livro', async () => {
+      const resultDelete: Promise<void> = new Promise((resolve, reject) => {
+        resolve();
+      });
+      jest.spyOn(livrosService, 'delete').mockImplementation();
+      expect(livrosController.delete('1')).toStrictEqual(resultDelete);
     });
   });
 });
