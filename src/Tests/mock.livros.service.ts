@@ -35,4 +35,5 @@ export class MockLivrosService {
     });
     return result;
   }
+  delete(id: number) {}
 }
