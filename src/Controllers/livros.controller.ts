@@ -20,7 +20,7 @@ import { Livro } from '../Models/livro.model';
 @UseInterceptors(ClassSerializerInterceptor)
 export class LivrosController {
   constructor(
-    @Inject('ITournamentsService')
+    @Inject('ILivrosService')
     private livrosService: ILivrosService,
   ) {}
 

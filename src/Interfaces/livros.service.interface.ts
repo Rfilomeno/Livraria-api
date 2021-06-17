@@ -1,6 +1,6 @@
-import { CreateLivroDto } from 'src/Models/dto/create-livro.det';
-import { LivroDto } from 'src/Models/dto/livros.dto';
-import { UpdateLivroDto } from 'src/Models/dto/update-livros.dto';
+import { CreateLivroDto } from '../Models/dto/create-livro.dto';
+import { LivroDto } from '../Models/dto/livros.dto';
+import { UpdateLivroDto } from '../Models/dto/update-livros.dto';
 
 export interface ILivrosService {
   getAll(): Promise<LivroDto[]>;

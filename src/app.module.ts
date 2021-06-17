@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config/dist/config.module';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { Livro } from './Models/livro.model';
 import { LivrosController } from './Controllers/livros.controller';
 import { LivrosService } from './Services/livros.service';
@@ -22,9 +20,8 @@ import { LivrosService } from './Services/livros.service';
     }),
     SequelizeModule.forFeature([Livro]),
   ],
-  controllers: [AppController, LivrosController],
+  controllers: [LivrosController],
   providers: [
-    AppService,
     LivrosService,
     {
       provide: 'ILivrosService',

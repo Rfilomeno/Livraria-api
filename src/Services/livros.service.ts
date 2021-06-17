@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateLivroDto } from 'src/Models/dto/create-livro.det';
-import { LivroDto } from 'src/Models/dto/livros.dto';
-import { UpdateLivroDto } from 'src/Models/dto/update-livros.dto';
+import { ILivrosService } from '../Interfaces/livros.service.interface';
+import { CreateLivroDto } from '../Models/dto/create-livro.dto';
+import { LivroDto } from '../Models/dto/livros.dto';
+import { UpdateLivroDto } from '../Models/dto/update-livros.dto';
 import { Livro } from '../Models/livro.model';
 
 @Injectable()
-export class LivrosService {
+export class LivrosService implements ILivrosService {
   constructor(
     @InjectModel(Livro)
     private repository: typeof Livro,
