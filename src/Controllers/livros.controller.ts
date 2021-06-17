@@ -4,45 +4,49 @@ import {
   Controller,
   Delete,
   Get,
+  Inject,
   Param,
   Post,
   Put,
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiNoContentResponse, ApiTags } from '@nestjs/swagger';
-import { LivroDto } from 'src/Models/dto/livros.dto';
+import { ILivrosService } from '../Interfaces/livros.service.interface';
+import { LivroDto } from '../Models/dto/livros.dto';
 import { Livro } from '../Models/livro.model';
-import { LivrosService } from '../Services/livros.service';
 
 @ApiTags('Livros')
 @Controller('livros')
 @UseInterceptors(ClassSerializerInterceptor)
 export class LivrosController {
-  constructor(private livrosService: LivrosService) {}
+  constructor(
+    @Inject('ITournamentsService')
+    private livrosService: ILivrosService,
+  ) {}
 
   @Get()
-  async obterTodos(): Promise<LivroDto[]> {
+  async getAll(): Promise<LivroDto[]> {
     return this.livrosService.getAll();
   }
 
   @Get(':id')
-  async obterUm(@Param() params): Promise<LivroDto> {
+  async getById(@Param() params): Promise<LivroDto> {
     return this.livrosService.getById(params.id);
   }
 
   @Post()
-  async criar(@Body() livro: LivroDto) {
+  async create(@Body() livro: LivroDto) {
     return this.livrosService.create(livro);
   }
 
   @Put()
-  async alterar(@Body() livro: Livro): Promise<[number, LivroDto[]]> {
+  async update(@Body() livro: Livro): Promise<[number, LivroDto[]]> {
     return this.livrosService.update(livro.id, livro);
   }
   //todo pesquisar httpcode
   @ApiNoContentResponse()
   @Delete(':id')
-  async apagar(@Param() params) {
+  async delete(@Param() params) {
     this.livrosService.delete(params.id);
   }
 }
