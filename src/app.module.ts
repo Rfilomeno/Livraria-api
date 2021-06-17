@@ -23,6 +23,13 @@ import { LivrosService } from './Services/livros.service';
     SequelizeModule.forFeature([Livro]),
   ],
   controllers: [AppController, LivrosController],
-  providers: [AppService, LivrosService],
+  providers: [
+    AppService,
+    LivrosService,
+    {
+      provide: 'ILivrosService',
+      useClass: LivrosService,
+    },
+  ],
 })
 export class AppModule {}
