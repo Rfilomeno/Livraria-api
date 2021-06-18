@@ -12,12 +12,15 @@ export class MockUsersService {
   };
   private result = new Promise<UserDto>((resolve, reject) => {
     resolve(this.user);
+    reject();
   });
   private resultArray = new Promise<UserDto[]>((resolve, reject) => {
     resolve([this.user]);
+    reject();
   });
-
+  private stopWarnings = 'no warnings';
   create(user: CreateUserDto): Promise<UserDto> {
+    this.stopWarnings = JSON.stringify(user);
     return this.result;
   }
   getAll(): Promise<UserDto[]> {
@@ -25,13 +28,19 @@ export class MockUsersService {
   }
 
   getById(id: string): Promise<UserDto> {
+    this.stopWarnings = JSON.stringify(id);
     return this.result;
   }
   update(id: string, user: UpdateUserDto): Promise<[number, UserDto[]]> {
+    this.stopWarnings = JSON.stringify(user) + JSON.stringify(id);
     const result = new Promise<[number, UserDto[]]>((resolve, reject) => {
       resolve([1, [this.user]]);
+      reject();
     });
     return result;
   }
-  delete(id: number) {}
+  delete(id: number) {
+    this.stopWarnings = JSON.stringify(id);
+    this.stopWarnings = 'no warnings';
+  }
 }

@@ -14,9 +14,11 @@ describe('AppController', () => {
   };
   const result = new Promise<UserDto>((resolve, reject) => {
     resolve(user);
+    reject();
   });
   const resultArray = new Promise<UserDto[]>((resolve, reject) => {
     resolve([user]);
+    reject();
   });
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
@@ -55,6 +57,7 @@ describe('AppController', () => {
       const resultUpdate = new Promise<[number, UserDto[]]>(
         (resolve, reject) => {
           resolve([1, [user]]);
+          reject();
         },
       );
       jest.spyOn(usersService, 'update').mockImplementation(() => resultUpdate);
@@ -63,6 +66,7 @@ describe('AppController', () => {
     it('should delete a user', async () => {
       const resultDelete: Promise<void> = new Promise((resolve, reject) => {
         resolve();
+        reject();
       });
       jest.spyOn(usersService, 'delete').mockImplementation();
       expect(usersController.delete('1')).toStrictEqual(resultDelete);

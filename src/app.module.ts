@@ -6,10 +6,18 @@ import { LivrosController } from './Controllers/livros.controller';
 import { LivrosService } from './Services/livros.service';
 import { UsersController } from './Controllers/users.controller';
 import { UsersService } from './Services/users.service';
+import { EmprestimosController } from './Controllers/emprestimos.controller';
+import { EmprestimoPublisherService } from './Controllers/Publisher/emprestimo.publisher.service';
+import { EVENT_HUB } from './Controllers/Publisher/nats.type';
+import { ClientProxyFactory, Transport } from '@nestjs/microservices';
+import { User } from './Models/user.model';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath: ['.env', '.development.env'],
+      isGlobal: true,
+    }),
     SequelizeModule.forRoot({
       dialect: 'mysql',
       host: 'localhost',
@@ -21,11 +29,13 @@ import { UsersService } from './Services/users.service';
       synchronize: true,
     }),
     SequelizeModule.forFeature([Livro]),
+    SequelizeModule.forFeature([User]),
   ],
-  controllers: [LivrosController, UsersController],
+  controllers: [LivrosController, UsersController, EmprestimosController],
   providers: [
     LivrosService,
     UsersService,
+    EmprestimoPublisherService,
     {
       provide: 'ILivrosService',
       useClass: LivrosService,
@@ -33,6 +43,12 @@ import { UsersService } from './Services/users.service';
     {
       provide: 'IUsersService',
       useClass: UsersService,
+    },
+    {
+      provide: EVENT_HUB,
+      useValue: ClientProxyFactory.create({
+        transport: Transport.TCP,
+      }),
     },
   ],
 })
