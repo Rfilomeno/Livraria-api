@@ -1,4 +1,4 @@
-import { Table, Model} from 'sequelize-typescript';
+import { Table, Model } from 'sequelize-typescript';
 import { Exclude, Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 

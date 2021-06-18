@@ -15,9 +15,11 @@ describe('AppController', () => {
   };
   const result = new Promise<LivroDto>((resolve, reject) => {
     resolve(livro);
+    reject();
   });
   const resultArray = new Promise<LivroDto[]>((resolve, reject) => {
     resolve([livro]);
+    reject();
   });
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
@@ -56,6 +58,7 @@ describe('AppController', () => {
       const resultUpdate = new Promise<[number, LivroDto[]]>(
         (resolve, reject) => {
           resolve([1, [livro]]);
+          reject();
         },
       );
       jest
@@ -68,6 +71,7 @@ describe('AppController', () => {
     it('should delete a livro', async () => {
       const resultDelete: Promise<void> = new Promise((resolve, reject) => {
         resolve();
+        reject();
       });
       jest.spyOn(livrosService, 'delete').mockImplementation();
       expect(livrosController.delete('1')).toStrictEqual(resultDelete);

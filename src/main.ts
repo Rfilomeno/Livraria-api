@@ -14,7 +14,7 @@ async function bootstrap() {
       url: 'nats://localhost:4222',
     },
   });
-  
+
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
   const config = new DocumentBuilder()

@@ -11,14 +11,18 @@ export class MockLivrosService {
     nome: 'Código limpo',
     preco: 70.99,
   };
+  private stopWarnings = '';
   private result = new Promise<LivroDto>((resolve, reject) => {
     resolve(this.livro);
+    reject();
   });
   private resultArray = new Promise<LivroDto[]>((resolve, reject) => {
     resolve([this.livro]);
+    reject();
   });
 
-  create(tournament: CreateLivroDto): Promise<LivroDto> {
+  create(livro: CreateLivroDto): Promise<LivroDto> {
+    this.stopWarnings = JSON.stringify(livro);
     return this.result;
   }
   getAll(): Promise<LivroDto[]> {
@@ -26,13 +30,21 @@ export class MockLivrosService {
   }
 
   getById(id: string): Promise<LivroDto> {
+    this.stopWarnings = JSON.stringify(id);
     return this.result;
   }
   update(id: string, livro: UpdateLivroDto): Promise<[number, LivroDto[]]> {
+    this.stopWarnings = JSON.stringify(livro);
+    this.stopWarnings = JSON.stringify(id);
     const result = new Promise<[number, LivroDto[]]>((resolve, reject) => {
       resolve([1, [this.livro]]);
+      reject();
     });
     return result;
   }
-  delete(id: number) {}
+  delete(id: number) {
+    this.stopWarnings = JSON.stringify(id);
+    this.stopWarnings = 'no warnings';
+    console.log(this.stopWarnings);
+  }
 }

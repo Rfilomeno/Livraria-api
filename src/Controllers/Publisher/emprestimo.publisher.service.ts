@@ -9,7 +9,9 @@ import { EmprestimoDto } from 'src/Models/dto/emprestimos.dto';
 import { EVENT_HUB } from './nats.type';
 
 @Injectable()
-export class EmprestimoPublisherService implements OnModuleInit, OnModuleDestroy {
+export class EmprestimoPublisherService
+  implements OnModuleInit, OnModuleDestroy
+{
   constructor(@Inject(EVENT_HUB) private readonly client: ClientProxy) {}
 
   async onModuleInit(): Promise<void> {
