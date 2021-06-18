@@ -4,6 +4,8 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { Livro } from './Models/livro.model';
 import { LivrosController } from './Controllers/livros.controller';
 import { LivrosService } from './Services/livros.service';
+import { UsersController } from './Controllers/users.controller';
+import { UsersService } from './Services/users.service';
 
 @Module({
   imports: [
@@ -20,12 +22,17 @@ import { LivrosService } from './Services/livros.service';
     }),
     SequelizeModule.forFeature([Livro]),
   ],
-  controllers: [LivrosController],
+  controllers: [LivrosController, UsersController],
   providers: [
     LivrosService,
+    UsersService,
     {
       provide: 'ILivrosService',
       useClass: LivrosService,
+    },
+    {
+      provide: 'IUsersService',
+      useClass: UsersService,
     },
   ],
 })
