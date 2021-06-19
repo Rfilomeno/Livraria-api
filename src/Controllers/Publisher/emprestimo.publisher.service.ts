@@ -3,6 +3,7 @@ import {
   Injectable,
   OnModuleDestroy,
   OnModuleInit,
+  Post,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { EmprestimoDto } from 'src/Models/dto/emprestimos.dto';
@@ -21,9 +22,9 @@ export class EmprestimoPublisherService
   onModuleDestroy(): void {
     return this.client.close();
   }
-
+  @Post()
   publish(emprestimo: EmprestimoDto): { success: boolean } {
-    this.client.emit('criar_emprestimo', emprestimo);
+    this.client.emit('create_emprestimo', emprestimo);
     return {
       success: true,
     };
