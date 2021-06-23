@@ -9,8 +9,8 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { EmprestimoDto } from '../Models/dto/emprestimos.dto';
 import { EmprestimoPublisherService } from './Publisher/emprestimo.publisher.service';
 
-@ApiTags('Emprestimo')
-@Controller('emprestimo')
+@ApiTags('Emprestimos')
+@Controller('emprestimos')
 @UseInterceptors(ClassSerializerInterceptor)
 export class EmprestimosController {
   constructor(private readonly publisherService: EmprestimoPublisherService) {}
