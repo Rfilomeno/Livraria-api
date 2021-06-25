@@ -1,0 +1,46 @@
+version: '3'
+services:
+  nats:
+    image: nats:2-alpine
+    ports:
+      - 4222:4222
+  mysql:
+    image: mysql:latest
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ./init.sql:/data/application/init.sql
+  elasticsearch:
+    image:          docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+    container_name: "elasticsearch"
+    hostname:       "elasticsearch"
+    restart:        always
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      node.name:                    "elasticsearch"
+      ES_JAVA_OPTS:                 "-Xmx256m -Xms256m"
+      discovery-type:               "single-node"
+      cluster.initial_master_nodes: "elasticsearch"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch:/Users/rodrigofilomeno/Desktop/elasticsearch/data
+  kibana:
+    image:          docker.elastic.co/kibana/kibana:7.5.2
+    container_name: "kibana"
+    hostname:       "kibana"
+    restart:        always
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+volumes:
+  elasticsearch:
+      
