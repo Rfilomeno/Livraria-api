@@ -30,6 +30,7 @@
     "@nestjs/swagger": "^4.8.0",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
+    "connection-string": "^4.3.4",
     "mysql2": "^2.2.5",
     "nats": "^1.4.12",
     "reflect-metadata": "^0.1.13",

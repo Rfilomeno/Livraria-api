@@ -15,15 +15,15 @@ import { User } from './Models/user.model';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env', '.development.env'],
+      envFilePath: ['.env', '.production.env'],
       isGlobal: true,
     }),
     SequelizeModule.forRoot({
       dialect: 'mysql',
       host: 'localhost',
-      port: 3306,
-      username: process.env.USUARIO_BANCO_DADOS,
-      password: process.env.SENHA_BANCO_DADOS,
+      port: 3307,
+      username: 'root',
+      password: '',
       database: 'livraria',
       autoLoadModels: true,
       synchronize: true,
